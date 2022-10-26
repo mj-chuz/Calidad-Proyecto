@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planetario-PI-IS-BD", "Planetario-PI-IS-BD.csproj", "{51D662BA-0565-42D2-B169-AAC0535AA173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planetario-PI-IS-BD.Tests", "..\Planetario-PI-IS-BD.Tests\Planetario-PI-IS-BD.Tests.csproj", "{E91F0AED-DA55-4690-9DF6-E606E96D01C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0F59C7E2-D856-4833-BB36-3747606BA264}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51D662BA-0565-42D2-B169-AAC0535AA173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51D662BA-0565-42D2-B169-AAC0535AA173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51D662BA-0565-42D2-B169-AAC0535AA173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51D662BA-0565-42D2-B169-AAC0535AA173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E91F0AED-DA55-4690-9DF6-E606E96D01C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E91F0AED-DA55-4690-9DF6-E606E96D01C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E91F0AED-DA55-4690-9DF6-E606E96D01C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E91F0AED-DA55-4690-9DF6-E606E96D01C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13A74B47-469A-4B9C-BCFF-60FDEF3FA564}
+	EndGlobalSection
+EndGlobal

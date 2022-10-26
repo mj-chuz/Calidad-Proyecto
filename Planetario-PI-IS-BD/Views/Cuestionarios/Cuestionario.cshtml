@@ -1,0 +1,133 @@
+﻿<html>
+
+<body>
+
+    @if (ViewBag.ExitoAlCargar == false || ViewBag.ExitoAlCargar == null)
+    {
+        <h1>No se pudo cargar el cuestionario</h1>
+    }
+    else
+    {
+        <h1 class="card-cuestionario" style="padding-top:30px">@ViewBag.Cuestionario.Nombre</h1>
+        <h4 class="card-cuestionario">@ViewBag.Cuestionario.Dificultad</h4>
+        <div class="cuestionario-container justify-content-center" id="quiz-div">
+            <div id="quiz-result" class="card card-cuestionario" style="display:none">
+                <h3 class="d-flex justify-content-center mt-4">Su nota es: <span style="margin-left:5px" id="quiz-percent"></span>%</h3>
+                <br />
+            </div>
+            @{ var i = 1;
+                foreach (var pregunta in ViewBag.Cuestionario.Preguntas)
+                {
+                    <div class="quizlib-question card card-cuestionario ">
+                        <div class="card-body">
+                            <div class="quizlib-question-title "><h5 class="card-title">@pregunta.Pregunta</h5><hr /></div>
+
+                            <div class="quizlib-question-answers">
+                                @{
+                                    var contadorValue = 0;
+                                    var nombre = "q" + i;
+                                    if (pregunta.Tipo == "SeleccionUnica" || pregunta.Tipo == "SeleccionMultiple")
+                                    {
+                                        var tipoInput = pregunta.Tipo == "SeleccionUnica" ? "radio" : "checkbox";
+                                        <ul>
+                                            @foreach (var respuesta in pregunta.Opciones)
+                                            {
+                                                var respuestaValue = respuesta.Replace(" ", "-");
+                                                <li><label><input class="form-check-input" style="margin-right:5px" type=@tipoInput name=@nombre value=@respuestaValue />@respuesta</label></li>
+                                                contadorValue++;
+                                            }
+                                        </ul>
+                                    }
+                                    else if (pregunta.Tipo == "Asocie")
+                                    {
+                                        foreach (var ladoIzq in pregunta.Preguntas)
+                                        {
+                                            var idDropdown = nombre + ladoIzq;
+                                            <div class="row">
+                                                <div class="col m-3" style="width:50%">
+                                                    <p style="float:right; width:55%">@ladoIzq</p>
+                                                </div>
+                                                <div class="col" style="width:50%">
+                                                    <div class="dropdown">
+                                                        <select class="form-select m-2" style="width:50%" aria-label=@idDropdown>
+                                                            <option selected hidden disabled value="">Respuesta</option>
+                                                            @foreach (var opcion in pregunta.Opciones)
+                                                            {
+                                                                var opcionValue = opcion.Replace(" ", "-");
+                                                                <option value=@opcionValue>@opcion</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    ++i;
+                }
+            }
+        </div>
+        <div class=" card-cuestionario">
+            <button type="button" class="btn btn-primary" style="float:right" id="boton-revisar-cuestionario">Revisar respuestas</button>
+            <a class="btn btn-primary" href="@Url.Action("PaginaPrincipal", "Cuestionarios")">Volver atrás</a>
+        </div>
+    }
+
+
+
+    <div class="modal fade" id="modal-resultado-cuestionario" tabindex="-1" role="dialog" aria-labelledby="modal-resultado-cuestionario" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content modal-popout-bg" style="background-image: url('../imagenes/fondoGalaxia.png'); background-size:cover; border-radius:15px">
+                <div class="modal-body" style="margin-top:100px">
+                    <div class="row">
+                        <div id="imagenMedalla" class="d-flex justify-content-center">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="texto-resultado" class="d-flex justify-content-center">
+                        </div>
+                    </div>
+                    <div class="container" style="padding-bottom:38px">
+                        <div class="row justify-content-end">
+                            <div class="col-1"></div>
+                            <div class="col-1"></div>
+                            <div class="col-2"><input align="right" type="submit" class="btn btn-primary boton-popup-cuestionario" value="Cerrar" id="boton-popup-cuestionario" /></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+<script src="~/Scripts/quizlib.1.0.1.js"></script>
+<script src="~/Scripts/VerificacionCuestionario.js"></script>
+<script type="text/javascript">
+
+    let respuestas = [];
+    let respuesta = ""
+    @if(ViewBag.ExitoAlCargar){
+        foreach (var pregunta in ViewBag.Cuestionario.Preguntas) {
+            @:respuesta = @Html.Raw(Json.Encode(@pregunta.Respuesta));
+            @:if (Array.isArray(respuesta)) {
+            @:for (let indice = 0; indice < respuesta.length; ++indice) {
+                @:respuesta[indice] = respuesta[indice].replace(/\s/g, '-');
+            @:}
+            @:} else { respuesta = respuesta.replace(/\s/g, '-')}
+            @:respuestas.push(respuesta);
+        }
+     }
+      let quiz = new Quiz("quiz-div", respuestas);
+      document.getElementById("boton-revisar-cuestionario").addEventListener("click", mostrarResultado, false);
+      document.getElementById("boton-popup-cuestionario").addEventListener("click", salirPopUp, false);
+</script>

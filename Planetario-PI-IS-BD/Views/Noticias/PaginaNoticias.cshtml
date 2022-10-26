@@ -1,0 +1,101 @@
+﻿@model Planetario.Models.FuncionarioModel
+@{
+    ViewBag.Title = "Noticias";
+}
+
+<html>
+
+<body>
+
+    @if (ViewBag.MensajeErrorVerificacion != null)
+    {
+        <div class="alert-danger">
+            <h3> @ViewBag.MensajeErrorVerificacion</h3>
+        </div>
+    }
+
+    <h3>@ViewBag.Message</h3>
+
+    <h1 id="titulo-noticias">Sección de noticias</h1>
+    <hr />
+
+    <div class="row row-cols-1 row-cols-md-2 seccion-noticias">
+
+        @foreach (var noticia in ViewBag.Noticias)
+        {
+
+            <div class="col mb-4">
+                <div class="card">
+                    <img src=" ~/Noticias/imagenes/@noticia.NombreImagen" class="imagen-noticia">
+                    <div class="card-body">
+                        <h2 class="card-title titulo-noticia">@Html.ActionLink((String)noticia.Titulo, "Noticia", "Noticias", new { nombre = noticia.NombreArchivo }, null)</h2>
+                        <h7 class="card-text text">@Html.Raw(noticia.Contenido)</h7>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">@noticia.Fecha</small>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+
+
+    <ul class="pagination">
+        <li class="page-item"><a class="botones-paginacion page-link" href="@Url.Action("PaginaNoticias", "Noticias", new { paginaMostrar = ViewBag.PaginaActual - 1 })">Anterior</a></li>
+        @for (int pagina = ViewBag.NumeroInicioPaginacion; pagina <= ViewBag.NumeroFinalPaginacion; pagina++)
+        {
+            <li class="page-item"><a class="page-link" href="@Url.Action("PaginaNoticias", "Noticias", new { paginaMostrar = pagina })">@pagina</a></li>
+        }
+        <li class="page-item"><a class="botones-paginacion page-link" href="@Url.Action("PaginaNoticias", "Noticias", new { paginaMostrar = ViewBag.PaginaActual + 1 })">Siguiente</a></li>
+    </ul>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-verificacion-identidad">
+        Crear nueva noticia
+    </button>
+
+    <div class="modal fade" id="modal-verificacion-identidad" tabindex="-1" role="dialog" aria-labelledby="modal-verificacion-identidadTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-verificacion-identidadTitle">Verificación de identidad de funcionario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("PaginaNoticias", "Noticias", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                    <div class="form-horizontal formulario-edicion-funcionarios">
+                        <div class="form-group">
+                            @Html.LabelFor(funcionarioModel => funcionarioModel.CodigoFuncionario)
+                            @Html.TextBoxFor(funcionarioModel => funcionarioModel.CodigoFuncionario, new { @class = "formcontrol" })
+                            @Html.ValidationMessageFor(funcionarioModel => funcionarioModel.CodigoFuncionario, "", new
+                            {
+                                @class
+                           = "text-danger"
+                            })
+                        </div>
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary boton-edicion-funcionarios" value="Crear" />
+                            </div>
+                        }
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+﻿
+@model PagedList.IPagedList<Planetario.Models.DatoReporteModel>
+@using PagedList.Mvc;
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="container-fluid" id="contenedor-principal-reporte">
+    <h1>Reporte de compra simple</h1>
+    <hr />
+
+    <form id="filtrosFechas" action="/ReporteCompra/ReporteCompraSimple" method="Post">
+        @if (ViewBag.MensajeError != null)
+        {
+            <div class="row">
+                <div class="alert-danger">
+                    <h4>@ViewBag.MensajeError</h4>
+                </div>
+            </div>
+        }
+        <div class="row mt-4">
+            <div class="col-3">
+                <label for="fecha-inicio" class="form-label">Desde:</label>
+                <div class="input-group mb-3">
+                    <input type="datetime-local" class="form-control" id="fechaInicio" name="fechaInicio">
+                </div>
+            </div>
+            <div class="col-3">
+                <label for="fecha-fin" class="form-label">Hasta:</label>
+                <div class="input-group mb-3">
+                    <input type="datetime-local" class="form-control" id="fechaFinal" name="fechaFinal">
+                </div>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary" style="border-radius:8px">Filtrar</button>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary" style="border-radius:8px">Limpiar</button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-5">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">@Html.ActionLink("Fecha", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "fechaCompraFK" })</th>
+                        <th scope="col">@Html.ActionLink("Cantidad", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "'Cantidad vendidos'" })</th>
+                        <th scope="col">@Html.ActionLink("Identificador", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "idProductoPK" })</th>
+                        <th scope="col">@Html.ActionLink("Nombre", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "nombre" })</th>
+                        <th scope="col">@Html.ActionLink("Categoría", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "categoria" })</th>
+                        <th scope="col">@Html.ActionLink("Género", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "genero" })</th>
+                        <th scope="col">@Html.ActionLink("Nivel Educativo", "ReporteCompraSimple", new { fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = "nivelEducativo" })</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.InformacionReporteSimple != null)
+                    {
+                        foreach (var datoReporteSimple in ViewBag.InformacionReporteSimple)
+                        {
+                            <tr>
+                                <td>@datoReporteSimple.FechaCompra</td>
+                                <td>@datoReporteSimple.CantidadDeUnidadesVendidas</td>
+                                <td>@datoReporteSimple.IdentificadorProducto</td>
+                                <td>@datoReporteSimple.NombreProducto</td>
+                                <td>@datoReporteSimple.Categoria</td>
+                                <td>@datoReporteSimple.Genero</td>
+                                <td>@datoReporteSimple.NivelEducativo</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="container text-center">
+            Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        </div>
+        @Html.PagedListPager(Model, paginaActual => Url.Action("ReporteCompraSimple", new { paginaActual, fechaInicio = ViewBag.FechaInicio, fechaFinal = ViewBag.FechaFinal, ordenamiento = ViewBag.Ordenamiento }))
+    </div>
+</div>

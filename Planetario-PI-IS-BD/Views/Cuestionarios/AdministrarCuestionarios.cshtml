@@ -1,0 +1,54 @@
+﻿<body>
+    @{
+        ViewBag.Title = "Lista de Cuestionarios";
+    }
+    <div class="lista-cuestionarios container">
+        <div class="col-md">
+            <h1>Administrar Cuestionarios</h1>
+            <hr />
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="nombre-cuestionario">Título</th>
+                            <th class="nombre-cuestionario">Dificultad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var id in ViewBag.Cuestionarios.Keys)
+                        {
+                            <tr>
+                                @foreach (var cuestionario in @ViewBag.Cuestionarios[@id])
+                                {
+                                <tr>
+                                    @{
+                                        string[] nombre = cuestionario.Split(new[] { ".json" }, StringSplitOptions.None);
+                                        string nombreCompleto = "";
+                                        foreach (string parteNombre in nombre)
+                                        {
+
+                                            nombreCompleto = nombreCompleto + parteNombre;
+                                        }
+                                    }
+                                    <td class="nombre-cuestionario">@nombreCompleto</td>
+                                    <td class="nombre-cuestionario">@id</td>
+                                    <td>
+                                        @Html.ActionLink("Eliminar", "EliminarCuestionario",
+                                               new { nombreCuestionario = cuestionario, dificultad = id },
+                                               new { @class = "btn btn alert-info boton-material", @style = "background-color: #000000; color: white", @onclick = "return confirm('¿Quiere eliminar este cuestionario?');" })
+                                    </td>
+                                </tr>
+                            }
+
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</body>

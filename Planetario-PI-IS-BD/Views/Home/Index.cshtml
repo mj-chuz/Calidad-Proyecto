@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Informacion Basica";
+}
+
+
+<div class="row align-content-center">
+    <div class="col-lg contenedor-principal" align="center">
+        <div id="titulo-principal" class="container-fluid">
+            <h1>Planetario</h1>
+            <h1>DAJAM</h1>
+        </div>
+    </div>
+    <div class="col-lg carrusel-noticias-contenedor">
+        <div id="carrusel-noticias-inicio" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carrusel-noticias-inicio" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#carrusel-noticias-inicio" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carrusel-noticias-inicio" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="~/Noticias/imagenes/@ViewBag.Noticias[0].NombreImagen" class="w-30 fotos-noticias-carrusel">
+                        <div class="carrusel-noticias carousel-caption">
+                            <h3 class="text-noticias-titulo">@Html.ActionLink((String)@ViewBag.Noticias[0].Titulo, "Noticia", "Noticias", new { nombre = @ViewBag.Noticias[0].NombreArchivo }, new { @class = "titulo-actionlink-noticia" })</h3>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="~/Noticias/imagenes/@ViewBag.Noticias[1].NombreImagen" class="w-30 fotos-noticias-carrusel">
+                        <div class="carrusel-noticias carousel-caption">
+                            <h3 class="text-noticias-titulo">@Html.ActionLink((String)@ViewBag.Noticias[1].Titulo, "Noticia", "Noticias", new { nombre = @ViewBag.Noticias[1].NombreArchivo }, new { @class = "titulo-actionlink-noticia" })</h3>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="~/Noticias/imagenes/@ViewBag.Noticias[2].NombreImagen" class="w-30 fotos-noticias-carrusel">
+                        <div class="carrusel-noticias carousel-caption">
+                            <h3 class="text-noticias-titulo">@Html.ActionLink((String)@ViewBag.Noticias[2].Titulo, "Noticia", "Noticias", new { nombre = @ViewBag.Noticias[2].NombreArchivo }, new { @class = "titulo-actionlink-noticia" })</h3>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrusel-noticias-inicio" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrusel-noticias-inicio" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card card-inicio text-center border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width:25rem; border-radius: 15px">
+                <div class="card-body">
+                    <a href="/Planetario/InformacionHorarios"><img src="~/imagenes/reloj-inicio1.png" class="card-img-top" alt="" style="margin-bottom:15px"></a>
+                    <h5 class="card-title">Horarios</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-inicio text-center border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 25rem; border-radius: 15px">
+                <div class="card-body">
+                    <a href="/Home/Nosotros"><img src="~/imagenes/info.png" class="card-img-top" alt="" style="margin-bottom:15px"></a>
+                    <h5 class="card-title">Nosotros</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-inicio text-center border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 25rem; border-radius: 15px">
+                <div class="card-body">
+                    <a href="/Calendarios/Calendarios"><img src="~/imagenes/calendario-inicio1.png" class="card-img-top" alt="" style="margin-bottom:15px"></a>
+                    <h5 class="card-title">Calendario</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-4">
+            <div class="card card-inicio text-center border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 25rem; border-radius: 15px">
+                <div class="card-body">
+                    <a href="/Cuestionarios/PaginaPrincipal"><img src="~/imagenes/cuestionario.png" class="card-img-top" alt="" style="margin-bottom:15px"></a>
+                    <h5 class="card-title">Cuestionarios</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card card-inicio text-center border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width:25rem; border-radius: 15px">
+                <div class="card-body">
+                    <a href="/Funcionarios/ListaDeFuncionarios"><img src="~/imagenes/funcionario.png" class="card-img-top" alt="" style="margin-bottom:15px"></a>
+                    <h5 class="card-title">Funcionarios</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,279 @@
+﻿<html>
+<body>
+    <div class="row container-titulo-actividades">
+        <div class="col">
+            <h1>Talleres</h1>
+        </div>
+        <div class="col">
+
+            <form method="post">
+                <div class="row" style="float: right;">
+                    <div class="col">
+                        <input class="form-control" type="text" id="palabraClave" placeholder="Palabra clave" name="palabraClave" />
+                    </div>
+                    <div class="col">
+                        <input style="margin-top: 0;" type="submit" class="btn btn-primary boton-material" value="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div id="container-actividades">
+        <script type="text/javascript">
+            function actualizarModal(titulo, fecha) {
+                document.getElementById("titulo").value = titulo;
+                document.getElementById("fecha").value = fecha;
+            }
+        </script>
+        <script type="text/javascript">
+            function actualizarRedireccionamientoAVisitanteNuevo() {
+                document.getElementById("redireccionar").value = "visitanteNuevo";
+            }
+        </script>
+        <script type="text/javascript">
+            function actualizarRedireccionamientoAVisitanteRecurrente() {
+                document.getElementById("redireccionar").value = "visitanteRecurrente";
+            }
+        </script>
+        <script type="text/javascript">
+            function actualizarModal(titulo, fecha) {
+                document.getElementById("titulo").value = titulo;
+                document.getElementById("fecha").value = fecha;
+
+            }
+        </script>
+        @{
+            int indice = 0;
+            foreach (var taller in ViewBag.ListaTalleres)
+            {
+                <div class="card border-light mb-3 shadow p-3 mb-5 bg-white rounded" style="margin-bottom: 20px">
+                    <div class="card-body">
+                        <table class="table table-light">
+                            <tbody>
+                                <tr>
+                                    <td id="fila-informacion">
+                                        <h1>
+                                            <a href=@Url.Action("Actividad", "Actividad", new { nombre = taller.Titulo, fecha = taller.Fecha })>@taller.Titulo</a>
+                                        </h1>
+
+                                        <ul id="lista-actividades">
+                                            <li>
+                                                Categoría: @taller.Categoria
+                                            </li>
+                                            <li>
+                                                Tópicos:
+                                                @{
+                                                    var numeroTopico = taller.Topicos.Count - 1;
+                                                    var ultimoTopico = taller.Topicos[numeroTopico];
+                                                }
+                                                @foreach (var topico in taller.Topicos)
+                                                {
+                                                    @topico
+                                                    if (topico != ultimoTopico)
+                                                    {
+                                                        @:-
+                                                    }
+                                                }
+                                            </li>
+                                            <li>Precio: @taller.PrecioSugerido colones</li>
+                                            <li>Duración: @taller.Duracion minutos</li>
+                                            <li>Fecha de la charla: @taller.Fecha.ToString("dd/MM/yyyy")</li>
+                                            <li>Nivel de complejidad: @taller.NivelDeComplejidad</li>
+                                            <li>
+                                                Público meta:
+                                                @{
+                                                    var numeroPublicoMeta = taller.PublicoMeta.Count - 1;
+                                                    var ultimoPublicoMeta = taller.PublicoMeta[numeroPublicoMeta];
+                                                }
+                                                @foreach (var publicoMeta in taller.PublicoMeta)
+                                                {
+                                                    @publicoMeta
+                                                    if (publicoMeta != ultimoPublicoMeta)
+                                                    {
+                                                        @:-
+                                                    }
+                                                }
+                                            </li>
+                                        </ul>
+
+                                    </td>
+                                    <td id="columna-descripcion">
+                                        <h2>Descripción: </h2>
+                                        <p>@taller.Descripcion</p>
+
+
+                                    </td>
+                                </tr>
+                            <tbody>
+                        </table>
+                        <div class="row">
+                            <div class="col">
+                                @Html.ActionLink("Ver Materiales", "RecuperarMaterialesActividad", "Material", new { titulo = taller.Titulo, fecha = taller.Fecha }, new { @class = "btn btn-primary boton-actividades" })
+                            </div>
+                            @if (taller.CuposDisponibles > 0)
+                            {
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary boton-ver-stream" data-bs-toggle="modal" data-bs-target="#comprarTiquetes" onclick="actualizarModalCompraTiquetes('@taller.Titulo', '@taller.Fecha', '@taller.PrecioSugerido', '@taller.CuposDisponibles')">
+                                        Comprar tiquetes
+                                    </button>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col">
+                                    <button type="button" class="btn btn-danger disabled" style="border-radius:7px">Cupos agotados</button>
+                                </div>
+                            }
+                            <div class="col">
+                                @if (taller.EnlaceStream != null && taller.EnlaceStream != "")
+                                {
+                                    <a class="btn btn-primary boton-ver-stream" target="_blank" href="@taller.EnlaceStream">Ver transmisión</a>
+                                }
+                            </div>
+                            @if (Request.IsAuthenticated)
+                            {
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary boton-ver-stream" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="actualizarModal('@taller.Titulo','@taller.Fecha')">
+                                        Agregar enlace
+                                    </button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                indice += 1;
+
+            }
+        }
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar enlace para la transmisión</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("EditarEnlace", "Actividad", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3" style="align-content:center">
+                            <label for="enlaceNuevo" class="col-form-label">Enlace:</label><br />
+                            <input type="text" id="enlaceNuevo" name="enlaceNuevo">
+                        </div>
+                        <div class="mb-3" style="display:none">
+                            <label for="titulo" class="col-form-label">Titulo:</label>
+                            <input type="hidden" id="titulo" name="titulo">
+                        </div>
+                        <div class="mb-3" style="display:none">
+                            <label for="fecha" class="col-form-label">Fecha:</label>
+                            <input type="hidden" id="fecha" name="fecha">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" style="border-radius:5px" data-bs-dismiss="modal">Cerrar</button>
+                            <input type="submit" class="btn btn-primary" style="border-radius:5px" value="Guardar" />
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="comprarTiquetes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-content"  style="border-radius:7.5px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="titulo-modal">Reserve su espacio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm("EnviarDatosDeCompra", "Actividad", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="titulo-actividad-compra-tiquetes"></h3>
+                                    <h5 class="fecha-actividad-compra-tiquetes"></h5>
+                                </div>
+                                <div class="col">
+                                    <h4 class="precio-actividad-compra-tiquetes"></h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="cuposComprados" class="col-form-label">
+                                        <select class="form-control" input-sm" id="cuposComprados" name="cuposComprados" style="text-align:center" required>
+                                            <option id="opcion-base-cupo" value="" default="1" selected="selected">Cupos</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                        
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <h5 class="espacio-disponible-actividad-compra-tiquetes"></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3" style="display:none">
+                            <label for="titulo" class="col-form-label">Titulo:</label>
+                            <input type="hidden" id="titulo-compra-tiquetes" name="titulo">
+                        </div>
+                        <div class="mb-3" style="display:none">
+                            <label for="fecha" class="col-form-label">Fecha:</label>
+                            <input type="hidden" id="fecha-compra-tiquetes" name="fecha">
+                        </div>
+                        <div class="mb-3" style="display:none">
+                            <label for="redireccionar" class="col-form-label">Fecha:</label>
+                            <input type="hidden" id="redireccionar" name="redireccionar">
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary dropdown-toggle boton-actividades" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Continuar
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark bg-black">
+
+                                <li><input type="submit" class="dropdown-item active botones-paginacion page-link" style="border-radius:5px" value="Visitante nuevo" onclick="actualizarRedireccionamientoAVisitanteNuevo()" /></li>
+                                <li><input type="submit" class="dropdown-item active botones-paginacion page-link" style="border-radius:5px" value="Visitante recurrente" onclick="actualizarRedireccionamientoAVisitanteRecurrente()" /></li>
+                            </ul>
+
+
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function actualizarModalCompraTiquetes(tituloActividad, fechaActividad, precioActividad, espacioDisponibleActividad) {
+        document.getElementById("titulo-compra-tiquetes").value = tituloActividad;
+        document.getElementById("fecha-compra-tiquetes").value = fechaActividad;
+        document.getElementsByClassName("titulo-actividad-compra-tiquetes")[0].innerHTML = tituloActividad;
+        document.getElementsByClassName("fecha-actividad-compra-tiquetes")[0].innerHTML = fechaActividad;
+        document.getElementsByClassName("precio-actividad-compra-tiquetes")[0].innerHTML = 'Precio de la actividad: ₡' + precioActividad;
+        document.getElementsByClassName("espacio-disponible-actividad-compra-tiquetes")[0].innerHTML = 'Cantidad de cupos disponibles: ' + espacioDisponibleActividad;
+    }
+</script>
+
+<script>
+    var input = document.getElementById('cuposComprados');
+    input.oninvalid = function (event) {
+        event.target.setCustomValidity('Seleccione la cantidad de cupos')
+    }
+    input.addEventListener('change', function (event) {
+        event.target.setCustomValidity('');
+    })
+</script>

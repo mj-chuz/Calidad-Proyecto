@@ -1,0 +1,106 @@
+﻿
+
+@model Planetario.Models.MaterialModel
+
+@{
+    ViewBag.Title = "Crear Material";
+}
+<html>
+<head>
+</head>
+<body>
+
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+      }
+        @using (Html.BeginForm("CrearMaterial", "Material", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            
+     
+<div class="form-horizontal formulario-edicion-funcionarios">
+    <h1>Formulario de para agregar material educativo</h1>
+    <hr />
+    <div class="form-group">
+        @Html.TextBoxFor(materialModel => materialModel.IdCreador, new { @class = "form-control", style="display:none", value=User.Identity.Name })
+    </div>
+    <h3>Ingrese los siguientes datos del material</h3>
+    <div class="form-group">
+        @Html.LabelFor(materialModel => materialModel.Titulo)
+        @Html.TextBoxFor(materialModel => materialModel.Titulo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(materialModel => materialModel.Titulo, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(materialModel => materialModel.Autor)
+        @Html.TextBoxFor(materialModel => materialModel.Autor, new { @class = "form-control" })
+        @Html.ValidationMessageFor(materialModel => materialModel.Autor, "", new { @class = "text-danger" })
+    </div>
+
+    @foreach (var tuplaCategoriaTopicos in ViewBag.ListaCategorias)
+    {
+        <div class="form-group">
+            <h3>@tuplaCategoriaTopicos.Item1.Nombre</h3>
+            @Html.LabelFor(materialModel => materialModel.Topicos)
+            @Html.ListBoxFor(materialModel => materialModel.Topicos, (List<SelectListItem>)tuplaCategoriaTopicos.Item2, new { @class = "form-control lista-topicos" })
+            @Html.ValidationMessageFor(materialModel => materialModel.Topicos, "", new { @class = "text-danger" })
+        </div>
+    }
+    <div class="form-group">
+
+        @Html.LabelFor(materialModel => materialModel.ActividadCodificada)
+        @Html.DropDownListFor(materialModel => materialModel.ActividadCodificada, (List<SelectListItem>)ViewBag.ListaActividades, new { @class = "form-control lista-actividades" })
+        @Html.ValidationMessageFor(materialModel => materialModel.ActividadCodificada, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(materialModel => materialModel.Archivo)
+        @Html.TextBoxFor(materialModel => materialModel.Archivo, new
+        {
+            type = "file",
+       @class = "btn btn alert-info"
+        })
+        @Html.ValidationMessageFor(materialModel => materialModel.Archivo, "", new
+        {
+       @class = "text-danger"
+        })
+    </div>
+
+
+    <input type="submit" class="btn btn-primary boton-edicion-funcionarios" value="Crear" />
+
+</div>
+        }
+
+
+</body>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('option').mousedown(function (e) {
+                e.preventDefault();
+                var originalScrollTop = $(this).parent().scrollTop();
+                console.log(originalScrollTop);
+                $(this).prop('selected', $(this).prop('selected') ? false : true);
+                var self = this;
+                $(this).parent().focus();
+                setTimeout(function () {
+                    $(self).parent().scrollTop(originalScrollTop);
+                }, 0);
+                return false;
+            });
+        });
+    </script>
+}
+</html>
+
