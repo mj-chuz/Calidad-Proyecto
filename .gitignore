@@ -21,7 +21,7 @@ _UpgradeReport_Files/
 ###############
 # Directories #
 ###############
-bin/
+
 obj/
 TestResults/
 ###################
@@ -57,7 +57,7 @@ TestResults/
 ehthumbs.db
 Icon?
 Thumbs.db
-[Bb]in
+
 [Oo]bj
 [Tt]est[Rr]esults
 *.suo
@@ -72,5 +72,4 @@ _[Ss]cripts
 
 *.ncrunchsolution
 *.dot[Cc]over
-/Planetario-PI-IS-BD/Materiales
-/Planetario-PI-IS-BD/.vs/Planetario-PI-IS-BD/v16/TestStore/1
+
