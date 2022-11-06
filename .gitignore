@@ -3,10 +3,9 @@
 ###################
 *.com
 *.class
-*.dll
-*.exe
+
 *.pdb
-*.dll.config
+
 *.cache
 *.suo
 # Include dlls if they’re in the NuGet packages directory
@@ -67,7 +66,6 @@ Thumbs.db
 
 
 _[Ss]cripts
-*.exe
 *.dll
 
 *.ncrunchsolution
