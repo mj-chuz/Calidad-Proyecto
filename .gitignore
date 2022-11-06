@@ -11,7 +11,7 @@
 # Include dlls if they’re in the NuGet packages directory
 
 # Include dlls if they're in the CommonReferences directory
-!*CommonReferences/*.dll
+
 ####################
 # VS Upgrade stuff #
 ####################
@@ -66,7 +66,7 @@ Thumbs.db
 
 
 _[Ss]cripts
-*.dll
+
 
 *.ncrunchsolution
 *.dot[Cc]over
