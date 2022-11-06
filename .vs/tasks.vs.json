@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Planetario-PI-IS-BD",
+      "appliesTo": "Planetario-PI-IS-BD/",
+      "type": "launch"
+    }
+  ]
+}
