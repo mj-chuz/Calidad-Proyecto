@@ -1,0 +1,872 @@
+﻿
+
+.contenedor-principal {
+    margin-top: 30px;
+    height: 496px;
+    width: 100%;
+    text-align: right;
+    background-image: url("/imagenes/planetario-principal.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#titulo-principal {
+    padding-top: 60px;
+    padding-right: 30px;
+}
+
+#titulo-principal h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 3.5rem;
+}
+.card-img-top {
+    width: 35%;
+    height: 25%;
+    object-fit: cover;
+}
+
+.contenedor-mapa {
+    margin-top: 60px;
+    margin-bottom: 150px;
+    align-content: center;
+    font-size : 1.3rem;
+    text-align:justify;
+}
+
+.mapouter {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    height: 464px;
+}
+
+.gmap_canvas {
+    overflow: hidden;
+    background: none !important;
+    width: 100%;
+    height: 464px;
+}
+
+.gmap_iframe {
+    height: 464px !important;
+}
+
+.contenedor-parqueo-transporte {
+    margin-top: 50px;
+    margin-bottom: 110px;
+    font-size: 1.3rem;
+}
+
+.contenedor-parqueo-transporte p {
+    float: left;
+    padding-top: 100px;
+}
+
+
+.contenedor-fotos-parqueo-transporte-horarios {
+    width: 10rem;
+    height: 200px;
+    padding-top: 60px;
+    margin-right: 30px;
+}
+
+
+.contenedor-funcionarios {
+    margin-top: 60px;
+    margin-bottom: 150px;
+    align-content: center;
+    text-align: justify; 
+}
+
+.funcionarios-subtitulos {
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+@media only screen and (max-width: 580px) {
+    .funcionarios-subtitulos {
+        font-size: 1rem;
+    }
+}
+
+.contenedor-funcionarios button {
+    border-radius: 10px;
+    text-transform: capitalize;
+}
+
+footer {
+    text-align: center;
+    background-color: black;
+    color: white;
+    width: 100%;
+    margin: 170px 0 0 0;
+    padding: 0;
+    
+}
+
+
+.formulario-creacion-noticias {
+    margin-top: 60px;
+}
+
+@media only screen and (max-width: 980px) {
+    .funcionarios-subtitulos {
+        font-size: 1rem;
+    }
+}
+
+.fotos-funcionarios {
+    height: 28%;
+    width: 28%;
+}
+
+@media only screen and (max-width: 965px) {
+    .fotos-funcionarios {
+        height: 90px;
+        width: 5rem;
+    }
+}
+
+
+.fotos-noticias-carrusel {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    height: 496px;
+    width: 100%;
+}
+
+.carousel-item h3 {
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-align: left;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 585px) {
+    .fotos-noticias-carrusel {
+        height: 250px;
+        width: 100%;
+    }
+
+    .contenedor-principal {
+        height: 11rem;
+        width: 30rem;
+    }
+
+    #titulo-principal h1 {
+        font-size: 1.5rem;
+    }
+
+    
+ }
+
+.carrusel-noticias-contenedor {
+    padding-right: 0;
+}
+
+
+
+.contenedor-noticia hr {
+    max-width: 100% !important;
+    color: black;
+}
+
+    .contenedor-noticia {
+        margin-top: 25px;
+        max-width: 100% !important;
+        color: black;
+    }
+
+
+    .contenedor-noticia p {
+        text-align: justify;
+        margin-top: 20px;
+        font-size: 18px;
+    }
+
+    .contenedor-imagen-noticia {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        max-height: 30rem;
+    }
+
+    .text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        text-align: justify;
+    }
+
+
+
+    .titulo-noticia {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .imagen-noticia {
+        height: 350px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .seccion-noticias {
+        margin-top: 2rem;
+    }
+
+    #titulo-noticias {
+        margin-top: 2rem;
+    }
+
+    .botones-paginacion {
+        background-color: black;
+        color: white
+    }
+
+    a.titulo-actionlink-noticia {
+        color: white
+    }
+
+    .contenedor-preguntas-respuestas {
+        margin-top: 60px;
+    }
+
+    .prueba h1 {
+        color: blue;
+    }
+
+    #titulo-topico {
+        font-size: 0.7rem;
+    }
+
+    #titulo-preguntas {
+        margin-top: 2rem;
+    }
+
+    .form-group {
+        padding: 1rem;
+        font-size: 1.3rem;
+    }
+
+    .btn-primary {
+        margin-top: 30px;
+    }
+
+
+    .lista-topicos {
+        padding: 15px;
+        height: 8rem;
+        font-size: 1.2rem;
+    }
+
+    .alert-success {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .alert-danger {
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .formulario-edicion-funcionarios {
+        margin-top: 60px;
+    }
+
+    .boton-edicion-funcionarios {
+        margin-left: 16px;
+    }
+
+    .contenedor-buscar-preguntas {
+        margin-top: 60px;
+    }
+
+    #titulo-buscador-preguntas {
+        font-size: 1rem;
+    }
+
+    .titulo-categoria-buscador h3 {
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+
+    .lista-topicos-buscador {
+        font-size: 0.8rem;
+    }
+
+    .lista-actividades {
+        height: 3rem;
+    }
+
+    #container-titulo-materiales {
+        margin-top: 30px;
+    }
+
+    .container-material-educativo {
+        margin-top: 30px;
+    }
+
+    .ver-material {
+        font-size: 1.7rem;
+    }
+
+    .botones-administracion-actividades-pendientes {
+        width: 960px;
+        margin: 0 auto;
+        display: inline-block;
+        float: left;
+        padding: 5px;
+    }
+
+
+    @media only screen and (max-width: 580px) {
+        .ver-material {
+            font-size: 1rem;
+        }
+    }
+
+
+    .boton-material {
+        margin-top: 5px;
+        border-radius: 5px;
+    }
+
+    .container-titulo-actividades {
+        margin-top: 30px;
+    }
+
+    #container-actividades h1 {
+        margin-top: 30px;
+    }
+
+    #lista-actividades li {
+        font-size: 1.5rem;
+        line-height: 2
+    }
+
+    .boton-actividades {
+        margin-top: 0px;
+        border-radius: 5px;
+    }
+
+    .descripcion-actividades {
+        float: right;
+    }
+
+    #columna-descripcion {
+        width: 55%;
+        text-align: justify;
+        padding-top: 45px;
+        padding-right: 70px;
+        font-size: 1.2rem;
+    }
+
+    #fila-informacion {
+        padding-top: 10px;
+    }
+
+    .dropdown-actividades {
+        margin-left: 10px;
+    }
+
+.contenedor-calendario {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-content: center;
+}
+
+@media only screen and (max-width: 585px) {
+    .contenedor-calendario {
+        font-size: 0.65rem;
+    }
+    .box {
+        float: left;
+        height: 10px;
+        width: 10px;
+        margin-bottom: 15px;
+        clear: both;
+        border-radius: 30px;
+    }
+}
+
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    clear: both;
+    border-radius: 100px;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.orange{
+    background-color: orange;
+}
+
+.purple{
+    background-color: purple;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+
+
+
+.container-calendario-estilo {
+    align-content: center;
+    margin-left: 2rem;
+}
+
+.row align-items-start{
+    width:20%
+}
+
+.titulo-actividad h1{
+    margin-top: 50px;
+    font-size: 2.5rem;
+}
+
+.datos-actividad {
+    list-style-type: none;
+    font-size: 1.5rem;
+    line-height: 200%;
+}
+
+.descripcion-actividad {
+    margin-right: 100px;
+    margin-left: 60px;
+}
+
+.descripcion-actividad p {
+    text-align: justify;
+    font-size: 1.3rem;
+    line-height: 200%;
+}
+
+.descripcion-actividad h3 {
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+.descripcion-evento {
+    margin-right: 230px;
+    margin-left: 60px;
+}
+
+.descripcion-evento p {
+    text-align: justify;
+    font-size: 1.3rem;
+    line-height: 200%;
+}
+
+.descripcion-evento h3 {
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+.imagen-cuestionario {
+      height: 25rem;
+      width: 25rem;
+      align-content:center;
+}
+
+@media only screen and (max-width: 400px) {
+    .imagen-cuestionario {
+        height: 15rem;
+        align-content: center;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+.imagen-principal {
+    height: 12rem;
+    width: 12rem;
+    align-content: center;
+}
+
+
+
+
+.fila-imagenes {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.texto-card{
+    font-size:2rem;
+    text-align:center;
+    font-weight:bold;
+}
+
+.texto-principal {
+    font-size: 1.7rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 400px) {
+    .texto-card {
+        font-size: 1.5rem;
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+    .contenedor-cuestionario-pagina-principal h1 {
+        margin-top: 40px;
+    }
+
+    .contenedor-cuestionario-pagina-principal h3 {
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+
+.card-cuestionario-pagina-principal{
+    align-content:center;
+}
+
+.card-cuestionario{
+    margin:15px auto 7px auto;
+    width:50%;
+}
+
+.quizlib-question {
+    margin-bottom: 1em;
+}
+
+.quizlib-question-title {
+}
+
+.quizlib-question-answers ul {
+    list-style: none;
+}
+
+.quizlib-question-warning {
+    color: #f44336;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.quizlib-correct {
+    color: #4caf50;
+}
+
+.quizlib-incorrect {
+    color: #f44336;
+}
+
+
+.card-inicio:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+}
+
+#ejemplo{
+    margin: 20px auto 30px auto;
+}
+.card-formulario-creacion-cuestionario {
+    margin: 15px auto 7px auto;
+    width: 50%;
+}
+
+.botones-creacion-cuestionario {
+    margin: 15px auto 7px auto;
+    width: 50%;
+}
+
+.boton-eliminar-opcion {
+    margin-top: 0px;
+}
+
+.boton-agregar-respuesta {
+    margin-top: 0px;
+}
+
+.lista-respuestas-posibles{
+    margin-bottom: 10px;
+}
+.contenedor-cuerpo{
+    margin-top:30px;
+}
+
+.filtros{
+    padding-top:30px;
+}
+
+.contenedor-filtros{
+    padding-top:30px;
+}
+
+.mensaje-falta-filtro-idioma {
+    margin-top: 120px;
+    margin-left: 30px;
+}
+
+
+
+.boton-ver-stream {
+    border-radius: 5px;
+    margin-top:0px;
+
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+    .video-container iframe, .video-container object, .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+#body-login container {
+    height: 200px;
+    position: relative;
+}
+
+.container-cards {
+    margin: 15vh auto;
+    border-radius:15px;
+}
+
+.page-bg {
+    background-image: url(https://unsplash.it/1000/500?image=733);
+    position: relative;
+    min-height: 100%;
+    background-size: cover;
+    padding: 1em;
+}
+
+#logo-inicio-sesion{
+    width:45%;
+}
+
+.formulario-login {
+    width:75%; 
+    padding:90px 30px 50px 30px;
+}
+
+@media only screen and (max-width: 1180px) {
+    .container-cards h1 {
+        font-size: 1.3rem;
+    }
+    .formulario-login {
+        width:50%; 
+        padding:60px 0 20px 0;
+    }
+}
+
+.form-control{
+    border-radius:8px;
+}
+
+.lista-cuestionarios h1{
+    margin-top: 30px;
+}
+
+.nombre-cuestionario{
+    font-size: 1.5rem;
+}
+
+.productos{
+    margin:auto;
+}
+
+.imagen-producto{
+    width: 65%;
+    height: 200px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 15px;
+}
+
+.boton-comprar-producto{
+    margin-top:0;
+    margin-bottom:7px;
+    border-radius:15px;
+}
+
+#ordenamiento {
+    float: right;
+    width: 8%;
+    border-radius: 10px;
+}
+
+#contenedor-baner-catalogo {
+    margin-top: 30px;
+    height: 320px;
+    width: 100%;
+    text-align: right;
+    background-image: url("/imagenes/baner-planetas.png");
+    background-color: #FFFF;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.titulo-producto {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.contenedor-juego {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 66.6%;
+}
+
+.juego {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%
+
+}
+
+#titulo-modal{
+    font-size: 1.7rem;
+    text-transform:none;
+}
+
+.titulo-actividad-compra-tiquetes {
+    text-transform: none;
+    font-style: normal;
+}
+
+.fecha-actividad-compra-tiquetes{
+    font-size: 1.1rem;
+}
+
+.precio-actividad-compra-tiquetes{
+    text-transform:none;
+    margin-top:25px;
+}
+
+.cantidad-cupos {
+    text-transform: none;
+    margin-top:10px;
+}
+
+.num-cupos{
+    font-size:1.1rem;
+}
+
+.espacio-disponible-actividad-compra-tiquetes {
+    text-transform: none;
+    margin-top: 10px;
+}
+
+#descripcion-producto-individual {
+    font-size: 1.2rem;
+}
+
+.imagen-carrito{
+    height: 15vh;
+    width: 100%;
+}
+
+#contenedor-principal-reporte{
+    margin-top: 30px;
+}
+
+.dropdown-menu li {
+    position: relative;
+}
+
+.dropdown-menu .dropdown-submenu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+    right: 100%;
+    left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+    display: block;
+}
+
+.radio-button-hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type=radio]:checked + label > img {
+    border: 1px solid #fff;
+    box-shadow: 0 0 2px 2px #000;
+}
+
+.img-csat {
+    height: 5vh;
+}
+
+.preguntas-satisfaccion{
+    text-transform:none;
+}
+
+#titulo-pregunta-satisfaccion {
+    margin-top: 30px;
+}
+
+.card-pregunta-satisfaccion{
+    margin-top:30px;
+    border-radius:10px;
+}
+
+.cuerpo-pregunta-satisfaccion{
+    align-content: center;
+    text-align: center;
+}
+
+.contenedor-preguntas-satisfaccion h3 {
+    text-transform: none;
+}

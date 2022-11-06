@@ -1,0 +1,54 @@
+﻿<html>
+    <body>
+        <div class="contenedor-calendario">
+            <h1>Calendario de eventos</h1>
+            <hr />
+
+            <div class="container">
+                 Filtrar por:
+                <div class="row">
+                    <div class="col">
+                        <input type="checkbox" class="form-check-input checkbox-filtro-calendario" name="peliculas" checked/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Películas
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" class="form-check-input checkbox-filtro-calendario" name="telescopiadas"  checked/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Telescopiadas
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" class="form-check-input checkbox-filtro-calendario" name="charlas"  checked/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Charlas
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" class="form-check-input checkbox-filtro-calendario" name="talleres"  checked/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Talleres
+                        </label>
+                    </div>
+                    <div class="col">
+                        <input type="checkbox" class="form-check-input checkbox-filtro-calendario" name="eventos"  checked/>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Eventos Astronómicos
+                        </label>
+                    </div>
+                </div>
+                <div id="calendario">
+                    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23e6ecff&ctz=America%2FCosta_Rica&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&showTz=0&src=NzZnOW04MGdjNWsya2VjY3RiYzFvczJpMWdAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=bGQxdGRqdDQxOWJiNzg1aTJuc3VvaWhtYTBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=a201MzQ1cmFkdWhkYWJlcGN2cDFlbXNlNHNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=NnE5bzM1bGtkb29hZGRiY2V2NnFkdmJ0MWNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZzFpc2ZxZTVuZ2kxZ202bXAwNHJ2OHU4Z2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23800080&color=%23cc0000&color=%230000cc&color=%23cc8400&color=%2300cc00" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="~/Scripts/Calendarios.js"></script>
+<script type="text/javascript">
+    let checkboxes = document.getElementsByClassName("checkbox-filtro-calendario")
+    for (let checkbox of checkboxes) {
+        checkbox.addEventListener("change", cambiarCalendario, false);
+    }
+</script>

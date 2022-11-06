@@ -1,0 +1,12 @@
+﻿<body>
+    @{
+        ViewBag.Title = "Noticia";
+    }
+    <div class="contenedor-noticia">
+        <h1>@ViewBag.Noticia.Titulo</h1>
+        <h3>@ViewBag.Noticia.Fecha</h3>
+        <hr style="height:2px; ">
+        <img class="contenedor-imagen-noticia" src=" ~/Noticias/imagenes/@ViewBag.Noticia.NombreImagen" >
+        <p>@Html.Raw(HttpUtility.HtmlDecode(ViewBag.Noticia.Contenido))</p>
+    </div>
+</body>

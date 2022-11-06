@@ -1,0 +1,83 @@
+﻿
+@model Planetario.Models.PreguntaModel
+
+<html>
+
+<body>
+
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.ExitoAlCrear)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message</h3>
+            </div>
+        }
+    }
+
+    <div class="container contenedor-crear-preguntas">
+
+        @using (Html.BeginForm("CrearPregunta", "Preguntas", FormMethod.Post,
+        new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+
+            <h1 id="titulo-preguntas">Formulario de creación de preguntas</h1>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PreguntaHecha)
+                    @Html.TextBoxFor(model => model.PreguntaHecha, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PreguntaHecha, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Respuesta)
+                    @Html.TextBoxFor(model => model.Respuesta, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Respuesta, "", new { @class = "text-danger" })
+                </div>
+                @foreach (var tuplaCategoriaTopicos in ViewBag.ListaCategorias)
+                {
+                    <div class="form-group">
+                        <h3>@tuplaCategoriaTopicos.Item1.Nombre</h3>
+                        @Html.LabelFor(model => model.Topicos)
+                        @Html.ListBoxFor(model => model.Topicos, (List<SelectListItem>)tuplaCategoriaTopicos.Item2, new { @class = "form-control lista-topicos" })
+                        @Html.ValidationMessageFor(model => model.Topicos, "", new { @class = "text-danger" })
+                    </div>
+                }
+
+
+                <input type="submit" class="btn btn-primary" value="Crear pregunta" />
+            </div>
+
+        }
+    </div>
+</body>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('option').mousedown(function (e) {
+                e.preventDefault();
+                var originalScrollTop = $(this).parent().scrollTop();
+                console.log(originalScrollTop);
+                $(this).prop('selected', $(this).prop('selected') ? false : true);
+                var self = this;
+                $(this).parent().focus();
+                setTimeout(function () {
+                    $(self).parent().scrollTop(originalScrollTop);
+                }, 0);
+                return false;
+            });
+        });
+    </script>
+}
+
+</html>

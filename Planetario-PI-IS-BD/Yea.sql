@@ -1,0 +1,1 @@
+﻿ALTER TABLE Material ADD nombreArchivo varchar(50)

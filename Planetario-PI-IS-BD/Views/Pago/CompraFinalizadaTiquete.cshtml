@@ -1,0 +1,83 @@
+﻿    <div class="container">
+        <h1 id="titulo-principal">Reservación realizada con éxito</h1>
+        <div class="card rounded-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h3>Detalles de la reservación.</h3>
+                        <div class="col  mb-4">
+                            <p style="font-size:1.5rem">Actividad: @ViewBag.Actividad.Titulo</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <p style="font-size:1.3rem">Código de reserva: <p style="font-size:1.3rem">@ViewBag.Codigo</p></p>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p style="font-size:1.3rem">Fecha y hora: @ViewBag.Actividad.Fecha</p>
+                    </div>
+                </div>
+                <div class="row-cols">
+                    <p style="font-size:1.3rem">Nombre: @ViewBag.Comprador.Nombre @ViewBag.Comprador.PrimerApellido</p>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p style="font-size:1.3rem">Identificación: @ViewBag.Comprador.NumeroIdentificacion</p>
+                    </div>
+                    <div class="col">
+                        <p style="font-size:1.3rem">Cantidad de espacios reservados: @ViewBag.Cupos</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p style="font-size:1.3rem">Correo: @ViewBag.Comprador.Correo</p>
+                    </div>
+                    <div class="col">
+                        <p style="font-size:1.3rem">Total: ₡ @ViewBag.PrecioTotal</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" style="margin-top:0px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#modal-preguntas">
+                            Volver al inicio
+                        </button>
+
+                        <div class="modal fade" id="modal-preguntas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" style="max-width: 28%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">¿Le gustaría calificar su experiencia?</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="text-align:center; align-content:center">
+                                        <a class="btn btn-primary" style="margin-top:0px; border-radius:5px; width:100px"  onclick="location.href='@Url.Action("CuestionarioSatisfaccionCompra", "PreguntaSatisfaccion", new { identificacionVisitante = @ViewBag.Comprador.NumeroIdentificacion, tipoActividad = "Compra tiquetes"})'">Si</a>
+                                        <a class="btn btn-danger" style="border-radius: 5px; width: 100px" onclick="location.href='@Url.Action("Index", "Home")'">No</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="share"></div>
+                    </div>
+                </div>
+            </div>
+           
+            
+        </div>
+    </div>
+    
+    <script src="~/Scripts/jquery.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+    <script>
+        @{ var urlSitio = Request.Url.GetLeftPart(UriPartial.Authority);}
+        $("#share").jsSocials({
+            shares: ["twitter", "facebook", "linkedin"],
+            showLabel: false,
+            showCount: false,
+            url: "@urlSitio" + "@Url.Action("Actividad","Actividad", new {nombre = ViewBag.Actividad.Titulo, fecha = ViewBag.Actividad.Fecha })",
+            text: "Me inscribí en la actividad "+"@ViewBag.Actividad.Titulo" + " del Planetario DAJAM"
+        });
+    </script>

@@ -1,0 +1,155 @@
+﻿
+
+@model Planetario.Models.VisitanteModel
+@{
+    ViewBag.Title = "Inscripcion";
+    List<SelectListItem> Generos = new List<SelectListItem>() { new SelectListItem {Value="Masculino", Text = "Masculino" }, new SelectListItem {Value="Femenino", Text = "Femenino" }, new SelectListItem { Value="NA", Text = "No especificado" } };
+    List<SelectListItem> Titulos = new List<SelectListItem>() { new SelectListItem { Text = "Primaria terminada" }, new SelectListItem { Text = "Secundaria terminada" }, new SelectListItem { Text = "Universidad terminada" }, new SelectListItem { Text = "Sin estudios terminados" } };
+}
+<html>
+<head>
+</head>
+<body>
+    @if (ViewBag.Message != null)
+    {
+        if (ViewBag.Exito)
+        {
+            <div class="alert-success">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+        else
+        {
+            <div class="alert-danger">
+                <h3> @ViewBag.Message </h3>
+            </div>
+        }
+    }
+    @using (Html.BeginForm("InscribirVisitante", "Visitante", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+<div class="form-horizontal formulario-edicion-funcionarios">
+    <h1>Formulario de inscripción de visitante</h1>
+    @if (@ViewBag.Actividad != null)
+    {
+        <h3>@ViewBag.Actividad.Titulo</h3>
+        <h3>Tiquetes a comprar: @ViewBag.Cupos</h3>
+        <h8>* Son campos obligatorios</h8>
+    }
+    <hr />
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.NumeroIdentificacion)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.NumeroIdentificacion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.NumeroIdentificacion, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.Nombre)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.Nombre, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.PrimerApellido)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.PrimerApellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.PrimerApellido, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.SegundoApellido)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.SegundoApellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.SegundoApellido, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.Correo)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.Correo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.Correo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.Genero)
+                @Html.DropDownListFor(visitanteModel => visitanteModel.Genero, Generos, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.Genero, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.Pais)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.Pais, new { style = "display:none;", id = "paisRelleno" })
+                @Html.DropDownList("paisSeleccionado", new SelectList(string.Empty, "Value", "Text"), "---", new { @class = "form-select", id= "paisSeleccionado" })
+                @Html.ValidationMessage("ErrorPaises", new { @class = "text-danger" })
+                @Html.ValidationSummary(true)
+                <p id="error-paises"></p>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.FechaDeNacimiento)
+                @Html.TextBoxFor(visitanteModel => visitanteModel.FechaDeNacimiento, new { type = "date", @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.FechaDeNacimiento, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(visitanteModel => visitanteModel.NivelEducativo)
+                @Html.DropDownListFor(visitanteModel => visitanteModel.NivelEducativo, Titulos, new { @class = "form-control" })
+                @Html.ValidationMessageFor(visitanteModel => visitanteModel.NivelEducativo, "", new { @class = "text-danger" })
+            </div>
+            @if (ViewBag.Actividad != null)
+            {
+                <div class="form-group" hidden>
+                    @Html.LabelFor(visitanteModel => visitanteModel.FechaActividadInscrita)
+                    @Html.TextBoxFor(visitanteModel => visitanteModel.FechaActividadInscrita, new { @Value = @ViewBag.Actividad.Fecha })
+                    @Html.ValidationMessageFor(visitanteModel => visitanteModel.FechaActividadInscrita, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group" hidden>
+                    @Html.LabelFor(visitanteModel => visitanteModel.TituloActividadInscrita)
+                    @Html.TextBoxFor(visitanteModel => visitanteModel.TituloActividadInscrita, new { @Value = @ViewBag.Actividad.Titulo })
+                    @Html.ValidationMessageFor(visitanteModel => visitanteModel.TituloActividadInscrita, "", new { @class = "text-danger" })
+                </div>
+            }
+            <div id="obtenedor-paises" data-request-url="@Url.Action("ObtenerPaises","Funcionarios")"></div>
+            <div id="obtenedor-idiomas" data-request-url="@Url.Action("ObtenerIdiomas","Funcionarios")"></div>
+            <div class="mb-3" style="display:none">
+                <input type="hidden" id="tipoInscripcion" name="tipoInscripcion" value="@ViewBag.TipoInscripcion">
+            </div>
+            <div class="mb-3" style="display:none">
+                <label for="cuposComprados" class="col-form-label">Fecha:</label>
+                <input type="hidden" id="cuposComprados" name="cuposComprados">
+            </div>
+        </div>
+    </div>
+    <input type="submit" style="float:right;margin-right:15px;border-radius:10px" class="btn btn-primary boton-actividades" value="Continuar a pago" onclick="revisar()" />
+    <div id="obtenedor-paises" data-request-url="@Url.Action("ObtenerPaises","Funcionarios")"></div>
+    <div id="obtenedor-idiomas" data-request-url="@Url.Action("ObtenerIdiomas","Funcionarios")"></div>
+</div>
+    }
+</body>
+<script type="text/javascript" src="~/Scripts/CargadorDatosPais.js"></script>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('option').mousedown(function (e) {
+                e.preventDefault();
+                var originalScrollTop = $(this).parent().scrollTop();
+                console.log(originalScrollTop);
+                $(this).prop('selected', $(this).prop('selected') ? false : true);
+                var self = this;
+                $(this).parent().focus();
+                setTimeout(function () {
+                    $(self).parent().scrollTop(originalScrollTop);
+                }, 0);
+                return false;
+            });
+        });
+    </script>
+}
+
+</html>
+<script type="text/javascript" src="~/Scripts/VerificadorCamposFormulario.js"></script>
+<script>
+    let verificadorCamposPais = new VerificadorCamposSeleccionFormulario("paisRelleno", "paisSeleccionado", "error-paises");
+    function revisar() {
+        verificadorCamposPais.revisarCampoSeleccionSimple();
+    }
+</script>
+<script type="text/javascript">
+    document.getElementById("cuposComprados").value = "@ViewBag.Cupos";
+</script>
+

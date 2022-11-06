@@ -1,0 +1,88 @@
+﻿<body>
+
+    <div class="container contenedor-preguntas-satisfaccion">
+        <h1 id="titulo-pregunta-satisfaccion">Evaluación de experiencia del usuario</h1>
+        <hr />
+        <h3>Por favor seleccione como fue su experiencia en la página del planetario</h3>
+
+        @{
+            var contador = 0;
+        }
+        @using (Html.BeginForm("CuestionarioSatisfaccionCompra", "PreguntaSatisfaccion", FormMethod.Post,
+       new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            foreach (var pregunta in ViewBag.Preguntas)
+            {
+
+                <div class="row">
+                    <div class="card card-pregunta-satisfaccion">
+                        <div class="card-body cuerpo-pregunta-satisfaccion">
+                            <h1 class="preguntas-satisfaccion">@pregunta.Pregunta</h1>
+                            <div class="row" style="margin-left:400px;">
+                                <div class="col-auto">
+
+
+                                    <input type="radio" name="pregunta-@contador"
+                                           id="@contador-5" class="radio-button-hidden" value="1" />
+                                    <label for="@contador-5">
+                                        <img class="img-csat" src="~/imagenes/sadness.png" />
+                                    </label>
+
+                                </div>
+                                <div class="col-auto">
+
+                                    <input type="radio" name="pregunta-@contador"
+                                           id="@contador-4" class="radio-button-hidden" value="2" />
+                                    <label for="@contador-4">
+                                        <img class="img-csat" src="~/imagenes/sad.png" />
+                                    </label>
+
+                                </div>
+
+
+                                <div class="col-auto">
+                                    <input type="radio" name="pregunta-@contador"
+                                           id="@contador-3" class="radio-button-hidden" value="3" />
+                                    <label for="@contador-3">
+                                        <img class="img-csat" src="~/imagenes/indifferent_1.png" />
+                                    </label>
+                                </div>
+
+                                <div class="col-auto">
+                                    <input type="radio" name="pregunta-@contador"
+                                           id="@contador-2" class="radio-button-hidden" value="4" />
+                                    <label for="@contador-2">
+                                        <img class="img-csat" src="~/imagenes/happiness.png" />
+                                    </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="radio" name="pregunta-@contador"
+                                           id="@contador-1" class="radio-button-hidden" value="5" />
+                                    <label for="@contador-1">
+                                        <img class="img-csat" src="~/imagenes/happy.png" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                contador++;
+
+            }
+            <div style="display:none">
+                <input type="hidden" id="identificacionVisitante" name="identificacionVisitante" value="@ViewBag.Identificacion">
+            </div>
+
+            <div style="display:none">
+                <input type="hidden" id="tipoActividad" name="tipoActividad" value="@ViewBag.TipoActividad">
+            </div>
+
+            <input type="submit" class="btn btn-primary" style="float: right; border-radius:5px;" value="Enviar" />
+        }
+    </div>
+
+</body>
+
+

@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+</head>
+<body>
+    <h1 style="padding-top: 30px; width: 50%; margin: 15px auto 7px auto; "> Creacion de cuestionario </h1>
+
+    @using (Html.BeginForm("CreacionCuestionario", "Cuestionarios", FormMethod.Post, new { enctype = "multipart/form-data", id="formulario-cuestionario" })) {
+        @Html.AntiForgeryToken()
+         <div class="form-horizontal " id="formularioEnvio">
+            <div class="justify-content-center" id="contenedor-creacion-cuestionario">
+
+            </div>
+
+            <input type="text" name="jsonCuestionario" id="jsonCuestionario" value="" style="display: none;" />
+         </div>
+     }
+    </body>
+</html>
+
+<script src="~/Scripts/FormularioCreacionDeCuestionarios.js"></script>
+<script type="text/javascript">
+    let creador = new CreadorDeCuestionarios();
+    creador.inicializarCuestionario();
+    var nombresCuestionariosPorDificultad = @Html.Raw(Json.Encode(ViewBag.NombresCuestionariosPorDificultad));
+    document.getElementById("formulario-cuestionario").addEventListener("submit", validarFormulario)
+</script>
