@@ -1,0 +1,19 @@
+{
+  "Juegos": [
+    {
+      "Nombre": "Crucigrama astronómico",
+      "Link": "https://es.educaplay.com/juego/10975597-terminos_astronomicos.html%22%3E",
+      "Imagen": "crucigrama.png"
+    },
+    {
+      "Nombre": "Memoria Sistema Solar",
+      "Link": "https://es.educaplay.com/juego/4675054-sistema_solar.html",
+      "Imagen": "memoria.jpg"
+    },
+    {
+      "Nombre": "Ruleta astronómica",
+      "Link": "https://es.educaplay.com/juego/10975780-ruleta_astronomica.html",
+      "Imagen": "ruleta.png"
+    }
+  ]
+}
