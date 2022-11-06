@@ -27,7 +27,7 @@ function obtenerColoresGraficoDiasDeLaSemada(listaDias) {
 
 function crearGrafico(idChart, nombreGrafico, data, etiquetas, listaColores, maximoSugerido = 0) {
     let elementoDOM=document.getElementById(idChart).getContext('2d');
-    /*let grafico = new Chart(elementoDOM, {
+    let grafico = new Chart(elementoDOM, {
         type: 'bar',
         data: {
             labels: etiquetas,
@@ -63,7 +63,7 @@ function crearGrafico(idChart, nombreGrafico, data, etiquetas, listaColores, max
             responsive: true,
             maintainAspectRatio: false,
         }
-    });*/
+    });
 }
 
 function generarGraficos(tablaInvolucramiento) {
