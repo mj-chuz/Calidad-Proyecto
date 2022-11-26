@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- js
 
 pool:
   vmImage: 'windows-latest'
